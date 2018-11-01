@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Printia</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <style type="text/css">
+    body{
+        background-color: #87ceeb;
+    }
+    .row{
+        max-width: 50%;
+        margin: 5vw auto;
+    }
+    .panel-body{
+      max-width: 330px;
+      padding: 15px;
+      margin: 0 auto;
+    }
+    textarea {
+    resize: none;
+    }  
+  </style>
+  <script type="text/JavaScript">
+    function countLength( text, field ) {
+      document.getElementById(field).innerHTML = text.length;
+    }
+  </script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  
+<% unless session[:user] %>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+  <ul class="nav navbar-nav navbar-left">
+    <li><a href="/"><img alt="Brand" src="/assets/images/titlelogo.png" style="max-height: 40px;"></a></li>
+  </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> 新規登録</a></li>
+      <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> ログイン</a></li>
+    </ul>
+  </div>
+</nav>
+
+<% else %>
+
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+  <ul class="nav navbar-nav navbar-left">
+    <li><a href="/"><img alt="Brand" src="/assets/images/titlelogo.png" style="max-height: 40px;"></a></li>
+  </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if User.find(session[:user]).user_icon %>
+      <li><a href="#"><img alt="Brand" src="<%= User.find(session[:user]).user_icon %>" id="user_icon" style="height: 40px; width: 40px;"></a></li>
+      <% else %>
+      <li><a href="#"><img alt="Brand" src="/assets/images/icon_def.png" id="user_icon" style="height: 40px; width: 40px;"></a></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<% end %>
+
+  
+  <div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+	<div class="panel panel-default">
+	<div class="panel-body">
+    <h1>アップロード</h1>
+    <br>
+    <form action="/new/img" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="img">アップロード</label><font color="red">*</font>
+        <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
+    　</div>
+    　
+    　<div class="form-group">
+        <label for="img_description">説明</label>
+        <textarea class="form-control" rows="1" id="img_description" name="img_description" placeholder="20文字以内" onKeyUp="countLength(value, 'description_length');"></textarea>
+        <p id="description_length" style="text-align:right;">0</p>
+      </div>
+  
+      <button class="btn btn-success" type="submit">アップロード</button>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

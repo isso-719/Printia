@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Printia</title>
+  <meta property="og:title" content="Printia" />
+  <meta name="twitter:title" content="Printia" />
+  <meta name="description" content="新しい書類の共有方法を見つけよう。">
+  <meta property="og:description" content="新しい書類の共有方法を見つけよう。" />
+  <meta name="twitter:description" content="新しい書類の共有方法を見つけよう。" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico">
+  <meta property="og:image" content="https://printia-isso719.c9users.io/assets/images/ogimage.png"/>
+  <meta property="og:image:width" content="600" /> 
+  <meta property="og:image:height" content="315" />
+  <meta property="og:url" content="https://printia-isso719.c9users.io/" />
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://printia-isso719.c9users.io/assets/images/ogimage.png" />
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.13/clipboard.min.js"></script>
+  <style type="text/css">
+    #content{
+      margin: 5px;
+      padding: 0;
+    }
+    #img_menu{
+      position: absolute;
+      bottom: 0;
+    }
+    ul.content li{
+      float: left;
+      margin-right: 1em;
+      margin-bottom: 2em;
+    }
+    #user_icon {
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    #content_box {
+      border-style: groove;
+      width: 300px;
+      height: 400px;
+      position: relative;
+    }
+    #content_img {
+      text-align: center;
+    }
+    #img {
+       max-width: 250px;
+       max-height: 250px;
+    }
+    video {
+      width: 80%;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+    <%= yield %>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Printia</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <style type="text/css">
+      body{
+          background-color: #87ceeb;
+      }
+      .row{
+          max-width: 50%;
+          margin: 5vw auto;
+      }
+      .panel-body{
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+    <div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+	<div class="panel panel-default">
+	<div class="panel-body">
+    <h1>サインイン</h1>
+    <br>
+    <form action="/signin" method="post">
+        <div class="form-group">
+        <label for="username">ユーザーID</label>
+        <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="form-group">
+        <label for="userpass">パスワード</label>
+        <input type="password" class="form-control" id="userpass" name="password">
+        </div>
+        <button class="btn btn-success" type="submit">ログイン</button>
+        <a class="btn btn-primary" href="/signup" role="button">新規登録</a>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

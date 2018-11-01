@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Printia</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <style type="text/css">
+      body{
+          margin:0;
+      }
+      img.img{
+          width: 60%;
+      }
+  </style>
+</head>
+<body>
+    <% unless session[:user] %>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+  <ul class="nav navbar-nav navbar-left">
+    <li><a href="/"><img alt="Brand" src="/assets/images/titlelogo.png" style="max-height: 40px;"></a></li>
+  </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> 新規登録</a></li>
+      <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> ログイン</a></li>
+    </ul>
+  </div>
+</nav>
+
+<% else %>
+
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+  <ul class="nav navbar-nav navbar-left">
+    <li><a href="/"><img alt="Brand" src="/assets/images/titlelogo.png" style="max-height: 40px;"></a></li>
+  </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if User.find(session[:user]).user_icon %>
+      <li><a href="#"><img alt="Brand" src="<%= User.find(session[:user]).user_icon %>" id="user_icon" style="height: 40px; width: 40px;"></a></li>
+      <% else %>
+      <li><a href="#"><img alt="Brand" src="/assets/images/icon_def.png" id="user_icon" style="height: 40px; width: 40px;"></a></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<% end %>
+
+
+    <p><a href="<%= @content.img %>">
+        <div id="content_img">
+        <img src="<%= @content.img %>" class="img">
+        </div>
+    </a></p>
+    <h2>説明</h2>
+    <h3><%= CGI.escapeHTML(@content.img_description) %></h3>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!--未ログイン-->
+<% unless session[:user] %>
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+  <ul class="nav navbar-nav navbar-left">
+    <li><a href="/"><img alt="Brand" src="/assets/images/titlelogo.png" style="max-height: 40px;"></a></li>
+  </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> 新規登録</a></li>
+      <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> ログイン</a></li>
+    </ul>
+  </div>
+</nav>
+<div align="center"><video autoplay muted><source src="/assets/images/conp1.mp4"></video></div>
+
+
+
+<!--未ログインここまで-->
+
+
+<!--ログイン済-->
+<% else %>
+
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+  <ul class="nav navbar-nav navbar-left">
+    <li><a href="/"><img alt="Brand" src="/assets/images/titlelogo.png" style="max-height: 40px;"></a></li>
+  </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if User.find(session[:user]).user_icon %>
+      <li><a href="#"><img alt="Brand" src="<%= User.find(session[:user]).user_icon %>" id="user_icon" style="height: 40px; width: 40px;"></a></li>
+      <% else %>
+      <li><a href="#"><img alt="Brand" src="/assets/images/icon_def.png" id="user_icon" style="height: 40px; width: 40px;"></a></li>
+      <% end %>
+    </ul>
+  </div>
+  </nav>
+
+  <div id="content">
+    
+    <h2>ようこそ<%= User.find(session[:user]).username %>さん</h2>
+    
+    　<a class="btn btn-success" href="/new/img" role="button">アップロード</a>
+    <a class="btn btn-info" href="/new/group" role="button">グループ作成</a>
+    <a class="btn btn-danger" href="/signout" role="button">ログアウト</a>
+    
+    
+  <div id="uploaded">
+    <h2>アップロード履歴</h2>
+
+    <!--アップロード済表示-->
+    <ul style="list-style:none;" class="content">
+        <% @contents.reverse.each do |content| %>
+        <li>
+            <div id="content_box" >
+                <p><a href="<%= content.img %>">
+                    <div id="content_img">
+                        <form action="/view/img/<%= content.img_random %>" method="post">
+                        <input type="image" src="<%= content.img %>" id="img">
+                        </form>
+                    </div>
+                   </a></p>
+            <div id="img_menu">
+                <b>説明</b>
+                <p><%= CGI.escapeHTML(content.img_description) %></p>
+            
+              <form style="display: inline" action="/edit/img/<%= content.id %>" method="post">
+                <button class="btn btn-info" type="submit">編集</button>
+              </form>
+              <form style="display: inline" action="/delete/img/<%= content.id %>" method="post">
+                <button class="btn btn-warning" type="submit">削除</button>
+              </form>
+                </div>
+            </div>
+        </li>
+        <% end %>
+    </ul>
+  </div>
+    <!--アップロード済表示ここまで-->
+  <div id="group_joined">
+    <h2 style=clear:left;>参加しているグループ</h2>
+    
+
+    
+  </div>
+  
+  </div>
+    
+<% end %>
+<!--ログイン済ここまで-->
